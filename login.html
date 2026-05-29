@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7days Admin - 로그인</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #F8FAFC;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 280px 0 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── Right-side decorative visual ── */
+    .logo-visual {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 125px;
+      height: 384px;
+      display: block;
+    }
+
+    /* ── Main login section ── */
+    .sevendays-login {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      width: 480px;
+    }
+
+    .logo-sevendays {
+      width: 196px;
+      height: 36px;
+      display: block;
+    }
+
+    /* ── Login card ── */
+    .login-card {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 24px;
+      padding-bottom: 40px;
+      background: #FFFFFF;
+    }
+
+    /* Title */
+    .login-title {
+      padding: 34px 40px 0;
+    }
+
+    .login-title h1 {
+      font-size: 30px;
+      font-weight: 700;
+      color: #374553;
+      line-height: 1.2;
+    }
+
+    /* Login pattern */
+    .login-pattern {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 0 40px;
+    }
+
+    /* Input stack */
+    .id-pass {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+      width: 400px;
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+    }
+
+    .input-wrapper input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #374553;
+      padding: 12px 16px;
+      line-height: 20px;
+    }
+
+    .input-wrapper input::placeholder {
+      color: #6B7280;
+    }
+
+    .input-trailing {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      flex-shrink: 0;
+    }
+
+    .eye-icon {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* Login button — disabled/blue */
+    .login-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      width: 400px;
+      background: #0073CF;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      opacity: 0.5;
+      cursor: not-allowed;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #FFFFFF;
+      text-align: center;
+      line-height: 20px;
+    }
+
+    /* Dotted divider */
+    .divider {
+      width: 400px;
+      height: 0;
+      border: none;
+      border-top: 1px dashed #E5E7EB;
+    }
+
+    /* Checkbox + link row */
+    .id-pass-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 400px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .checkbox-box {
+      width: 16px;
+      height: 16px;
+      border: 1px solid #E5E7EB;
+      border-radius: 4px;
+      background: #FFFFFF;
+      flex-shrink: 0;
+      margin-top: 4px;
+      align-self: flex-start;
+    }
+
+    .checkbox-group span {
+      font-size: 16px;
+      font-weight: 500;
+      color: #1F2937;
+      line-height: 24px;
+    }
+
+    .link-find-pw {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      text-decoration: none;
+      line-height: 20px;
+      text-align: center;
+    }
+
+    .link-find-pw:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    .footer {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 480px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 480px;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      font-weight: 400;
+      color: #6B7280;
+      line-height: 20px;
+    }
+
+    .inquiry-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      padding: 8px;
+      background: #F0F7FF;
+      border: 1px solid #E0EFFE;
+      border-radius: 999px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .inquiry-btn span {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #0073CF;
+    }
+
+    .footer-divider {
+      width: 400px;
+      height: 0;
+      border: none;
+      border-top: 1px dashed #E5E7EB;
+    }
+
+    .copyright {
+      font-size: 12px;
+      font-weight: 400;
+      color: #9CA3AF;
+      line-height: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Right-side decorative gradient visual -->
+  <img class="logo-visual" src="assets/logo-visual.svg" alt="" aria-hidden="true" />
+
+  <!-- ── Main login section ── -->
+  <div class="sevendays-login">
+
+    <!-- Sevendays logo -->
+    <img class="logo-sevendays" src="assets/logo-sevendays.svg" alt="Sevendays" />
+
+    <!-- Login card -->
+    <div class="login-card">
+
+      <!-- Title -->
+      <div class="login-title">
+        <h1>로그인</h1>
+      </div>
+
+      <!-- Form area -->
+      <div class="login-pattern">
+
+        <!-- ID / Password inputs -->
+        <div class="id-pass">
+          <div class="input-wrapper">
+            <input type="text" placeholder="아이디 입력" />
+          </div>
+
+          <div class="input-wrapper">
+            <input type="password" placeholder="비밀번호 입력" />
+            <div class="input-trailing">
+              <!-- Eye icon (inline SVG) -->
+              <svg class="eye-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 8C1 8 3.5 3 8 3C12.5 3 15 8 15 8C15 8 12.5 13 8 13C3.5 13 1 8 1 8Z" stroke="#6B7280" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="8" cy="8" r="2" stroke="#6B7280" stroke-width="1.2"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Login button (disabled state) -->
+        <button class="login-btn" disabled>로그인 하기</button>
+
+        <!-- Dotted divider -->
+        <div class="divider"></div>
+
+        <!-- Save ID checkbox + Find password link -->
+        <div class="id-pass-options">
+          <label class="checkbox-group">
+            <div class="checkbox-box"></div>
+            <span>아이디 저장</span>
+          </label>
+          <a href="#" class="link-find-pw">비밀번호 찾기</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <div class="footer">
+    <div class="footer-top">
+      <span class="footer-text">서비스 이용 문의는 세븐데이즈 담당자에게 문의</span>
+      <button class="inquiry-btn">
+        <img src="assets/icon-message.svg" width="14" height="14" alt="" aria-hidden="true" />
+        <span>문의</span>
+      </button>
+    </div>
+    <div class="footer-divider"></div>
+    <span class="copyright">Copyright ⓒ2026&nbsp; sevendays plus Co. Ltd. All Rights Reserved.</span>
+  </div>
+
+</body>
+</html>
